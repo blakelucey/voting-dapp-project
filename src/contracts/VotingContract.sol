@@ -10,15 +10,17 @@ contract VotingContract is Ownable {
     }
 
     Proposal[] public proposals;
+    uint256 public proposalCount;
 
     constructor(string[] memory proposalNames) {
+        proposalCount = proposalNames.length;
         for (uint256 i = 0; i < proposalNames.length; i++) {
             proposals.push(Proposal({name: proposalNames[i], voteCount: 0}));
         }
     }
 
     function getProposalCount() public view returns (uint256) {
-        return proposals.length;
+        return proposalCount;
     }
 
     function getProposal(
